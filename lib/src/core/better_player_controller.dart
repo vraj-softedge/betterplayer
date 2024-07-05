@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:io';
-
-import 'package:better_player/better_player.dart';
-import 'package:better_player/src/configuration/better_player_controller_event.dart';
-import 'package:better_player/src/core/better_player_utils.dart';
-import 'package:better_player/src/subtitles/better_player_subtitle.dart';
-import 'package:better_player/src/subtitles/better_player_subtitles_factory.dart';
-import 'package:better_player/src/video_player/video_player.dart';
-import 'package:better_player/src/video_player/video_player_platform_interface.dart';
+import 'package:better_player_plus/better_player_plus.dart';
+import 'package:better_player_plus/src/configuration/better_player_controller_event.dart';
+import 'package:better_player_plus/src/core/better_player_utils.dart';
+import 'package:better_player_plus/src/subtitles/better_player_subtitle.dart';
+import 'package:better_player_plus/src/subtitles/better_player_subtitles_factory.dart';
+import 'package:better_player_plus/src/video_player/video_player.dart';
+import 'package:better_player_plus/src/video_player/video_player_platform_interface.dart';
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -415,7 +414,7 @@ class BetterPlayerController {
         }
       }
       _asmsSegmentsLoading = false;
-    } catch (exception) {
+    } on Exception catch (exception) {
       BetterPlayerUtils.log("Load ASMS subtitle segments failed: $exception");
     }
   }

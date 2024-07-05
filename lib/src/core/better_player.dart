@@ -1,9 +1,8 @@
 import 'dart:async';
-import 'package:better_player/better_player.dart';
-import 'package:better_player/src/configuration/better_player_controller_event.dart';
-import 'package:better_player/src/core/better_player_utils.dart';
-import 'package:better_player/src/core/better_player_with_controls.dart';
-import 'package:flutter/foundation.dart';
+import 'package:better_player_plus/better_player_plus.dart';
+import 'package:better_player_plus/src/configuration/better_player_controller_event.dart';
+import 'package:better_player_plus/src/core/better_player_utils.dart';
+import 'package:better_player_plus/src/core/better_player_with_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -91,7 +90,7 @@ class _BetterPlayerState extends State<BetterPlayer>
         final contextLocale = Localizations.localeOf(context);
         locale = contextLocale;
       }
-    } catch (exception) {
+    } on Exception catch (exception) {
       BetterPlayerUtils.log(exception.toString());
     }
     widget.controller.setupTranslations(locale);

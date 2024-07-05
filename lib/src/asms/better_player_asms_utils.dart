@@ -1,8 +1,7 @@
 import 'dart:convert';
-import 'package:universal_io/io.dart';
-import 'package:better_player/src/core/better_player_utils.dart';
-import 'package:better_player/src/dash/better_player_dash_utils.dart';
-import 'package:better_player/src/hls/better_player_hls_utils.dart';
+import 'dart:io';
+import 'package:better_player_plus/src/core/better_player_utils.dart';
+import 'package:better_player_plus/src/hls/better_player_hls_utils.dart';
 
 import 'better_player_asms_data_holder.dart';
 
@@ -26,10 +25,10 @@ class BetterPlayerAsmsUtils {
 
   ///Parse playlist based on type of stream.
   static Future<BetterPlayerAsmsDataHolder> parse(
-      String data, String masterPlaylistUrl) async {
-    return isDataSourceDash(masterPlaylistUrl)
-        ? BetterPlayerDashUtils.parse(data, masterPlaylistUrl)
-        : BetterPlayerHlsUtils.parse(data, masterPlaylistUrl);
+    String data,
+    String masterPlaylistUrl,
+  ) async {
+    return BetterPlayerHlsUtils.parse(data, masterPlaylistUrl);
   }
 
   ///Request data from given uri along with headers. May return null if resource
@@ -51,7 +50,7 @@ class BetterPlayerAsmsUtils {
       }).asFuture<String?>();
 
       return data;
-    } catch (exception) {
+    } on Exception catch (exception) {
       BetterPlayerUtils.log("GetDataFromUrl failed: $exception");
       return null;
     }
